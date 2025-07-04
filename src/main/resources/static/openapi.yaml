@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: SIGNATURE API 🖋️
+  version: 1.0.0
+  description: "API para geração e verificação de assinaturas digitais (.p7s)."
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: Signature
+    description: Endpoints para geração e verificação de assinaturas digitais.
+
+paths:
+  /signature:
+    post:
+      tags:
+        - Signature
+      summary: Gera uma assinatura digital (.p7s) de um arquivo
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                p12:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Assinatura gerada com sucesso (Base64)
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Erro de entrada
+
+  /verify:
+    post:
+      tags:
+        - Signature
+      summary: Verifica uma assinatura digital (.p7s)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                signedFile:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Resultado da verificação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationResultResponseDTO'
+        '400':
+          description: Assinatura inválida ou erro de processamento
+
+components:
+  schemas:
+    VerificationResultResponseDTO:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [VALIDO, INVALIDO]
+        signerName:
+          type: string
+        signingTime:
+          type: string
+          format: date-time
+        documentHash:
+          type: string
+        hashAlgorithm:
+          type: string
