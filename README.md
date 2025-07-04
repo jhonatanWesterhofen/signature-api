@@ -73,7 +73,8 @@ Para aumentar a segurança da API, é recomendado proteger os endpoints com aute
 
 ### Como funciona?
 
-- O servidor Spring Boot pode ser configurado para exigir autenticação Basic para os endpoints `/signature` e `/verify`.
+- O servidor Spring Boot pode ser configurado para exigir autenticação Basic para os endpoints 
+`/signature` e `/verify`.
 - O cliente deve enviar a seguinte header na requisição:
 
 ### Exemplo de uso com curl
@@ -87,6 +88,31 @@ curl -X POST "http://localhost:8080/signature" \
 
   ```
 (Onde dXNlcjpwYXNz é o resultado da codificação Base64 do texto user:pass)
+
+## ⚙️ CI/CD com GitHub Actions
+
+Este projeto utiliza **GitHub Actions** para automatizar o processo de build e publicação do artefato `.jar` na aba de **Releases** do repositório.
+
+Sempre que um push for feito com uma **tag iniciando com `v`** (ex: `v1.0.0`, `v0.1.2`), o GitHub Actions irá:
+
+1. Fazer o checkout do repositório
+2. Configurar o Java 8 (Temurin)
+3. Executar o build com `mvn clean package`
+4. Publicar o `.jar` gerado em `target/` na aba **Releases**
+
+### ✅ Exemplo de uso:
+
+```bash
+# Após confirmar que o projeto está funcionando corretamente
+
+# Commit normal
+git add .
+git commit -m "Finaliza versão 1.0.0"
+git push origin master
+
+# Criação da tag de versão
+git tag v1.0.0
+git push origin v1.0.0
 
 
 ## ✅ Resumo Completo das Etapas do Projeto
@@ -158,4 +184,7 @@ curl -X POST "http://localhost:8080/signature" \
 
 
 ---
+
+
+
 
