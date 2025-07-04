@@ -7,6 +7,6 @@ import com.java.hash.domain.entities.dto.VerificationResultResponseDTO;
  * @author Jhonatan
  */
 public interface ISignatureVerifyRepository {
-
     VerificationResultResponseDTO verify(byte[] signedDataBase64);
+
 }
