@@ -2,6 +2,10 @@ package com.java.hash.domain.entities.dto;
 
 import com.java.hash.domain.Enums.EnumStatusVerification;
 
+/**
+ *
+ * @author Jhonatan
+ */
 public class VerificationResultResponseDTO {
 
     private EnumStatusVerification status;

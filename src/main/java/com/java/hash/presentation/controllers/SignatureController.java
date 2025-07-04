@@ -13,6 +13,10 @@ import com.java.hash.domain.entities.dto.VerificationResultResponseDTO;
 import com.java.hash.service.DigitalSignatureService;
 import com.java.hash.service.SignatureVerificationService;
 
+/**
+ *
+ * @author Jhonatan
+ */
 @RestController
 @RequestMapping("/")
 public class SignatureController {
