@@ -2,6 +2,10 @@ package com.java.hash.domain.Enums;
 
 import com.java.hash.domain.utils.EnumUtils;
 
+/**
+ *
+ * @author Jhonatan
+ */
 public enum EnumErrorCode implements IEnum {
 
     FALHA_AO_PARSAR("FALHA_AO_PARSAR", "Falha ao ao processar certificado ", 400),

@@ -1,5 +1,9 @@
 package com.java.hash.domain.Enums;
 
+/**
+ *
+ * @author Jhonatan
+ */
 public enum EnumStatusVerification implements IEnum {
 
     INVALIDO("INVALIDO", "INVALIDO"),
